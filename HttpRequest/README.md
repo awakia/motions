@@ -52,3 +52,20 @@ Main site of bubble-wrap gem
 - http://gembundler.com/v1.3/rubymotion.html
 
 This document teach us how to use gems for ruby motion.
+
+
+## Debugging Technique
+
+- http://www.rubymotion.com/developer-center/articles/debugging/
+
+Sample debugging using breakpoint...
+
+```
+$ echo "break http_request_view_controller.rb:13" > debugger_cmds
+$ rake debug=1
+...
+Breakpoint 3, rb_scope__viewDidLoad__block__ (self=0x942f230, response=0x9433470) at http_request_view_controller.rb:14
+14        @label.text = response.url.absoluteString
+Current language:  auto; currently minimal
+(gdb) pro response
+```
