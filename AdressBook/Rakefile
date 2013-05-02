@@ -4,8 +4,8 @@ require 'motion/project'
 require 'bundler'
 Bundler.require  # thanks to this do not need to write "require 'bubble-wrap'"
 
-
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'AdressBook'
+  app.frameworks = ['AddressBook', 'AddressBookUI']
 end
