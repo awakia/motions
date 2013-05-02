@@ -1,0 +1,11 @@
+GEM
+  specs:
+    bubble-wrap (1.2.0)
+    motion-addressbook (1.2.0)
+      bubble-wrap
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  motion-addressbook
