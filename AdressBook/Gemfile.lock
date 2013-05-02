@@ -8,4 +8,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bubble-wrap
   motion-addressbook
