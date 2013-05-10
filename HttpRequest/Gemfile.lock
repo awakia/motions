@@ -1,9 +1,9 @@
 GEM
   specs:
-    bubble-wrap (1.2.0)
+    bubble-wrap (1.3.0.osx)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bubble-wrap
+  bubble-wrap (~> 1.3.0.osx)
