@@ -1,0 +1,6 @@
+# Commonly unnecessary files to track.
+*.swp
+*.out
+*~
+.project
+.DS_Store
