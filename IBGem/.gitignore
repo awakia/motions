@@ -1,6 +1,5 @@
 .repl_history
 build
-vendor
 tags
 app/pixate_code.rb
 resources/*.nib
