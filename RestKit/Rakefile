@@ -7,6 +7,7 @@ Bundler.require
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'RestKit'
+  app.info_plist['BASE_URL'] = "http://localhost:3000"
   app.pods do
     pod 'RestKit'
   end
