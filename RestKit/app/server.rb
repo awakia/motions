@@ -8,6 +8,7 @@ class Server
 
   def initialize
     initialize_restkit
+    register_coffee_shop_mapping
   end
 
   def get(path, delegate)
@@ -24,5 +25,26 @@ class Server
 
   def restkit_object_manager
     @restkit_object_manager ||= RKObjectManager.sharedManager
+  end
+
+  def register_coffee_shop_mapping
+    coffee_shops_descriptor = RKRequestDescriptor.requestDescriptorWithMapping(coffee_shop_mapping, objectClass:CoffeeShop, rootKeyPath:"coffee_shops")
+    restkit_object_manager.addRequestDescriptor(coffee_shops_descriptor)
+    coffee_shop_descriptor = RKRequestDescriptor.requestDescriptorWithMapping(coffee_shop_mapping, objectClass:CoffeeShop, rootKeyPath:"coffee_shop")
+    restkit_object_manager.addRequestDescriptor(coffee_shop_descriptor)
+  end
+
+  def coffee_shop_mapping
+    @coffee_shop_mapping ||= begin
+                                mapping = RKObjectMapping.requestMapping
+                                mapping.addAttributeMappingsFromDictionary({
+                                  "id" => "id",
+                                  "latitude" => "latitude",
+                                  "longitude" => "longitude",
+                                  "name" => "name",
+                                  "shot_count" => "shot_count",
+                                })
+                                mapping
+                             end
   end
 end
