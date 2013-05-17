@@ -11,8 +11,8 @@ class Server
     register_coffee_shop_mapping
   end
 
-  def get(path, delegate)
-    restkit_object_manager.loadObjectsAtResourcePath(path, delegate: delegate)
+  def get(path, success = nil, failure = nil)
+    restkit_object_manager.getObjectsAtPath(path, parameters: '', success: success, failure: failure)
   end
 
   def base_url
@@ -28,10 +28,10 @@ class Server
   end
 
   def register_coffee_shop_mapping
-    coffee_shops_descriptor = RKRequestDescriptor.requestDescriptorWithMapping(coffee_shop_mapping, objectClass:CoffeeShop, rootKeyPath:"coffee_shops")
-    restkit_object_manager.addRequestDescriptor(coffee_shops_descriptor)
-    coffee_shop_descriptor = RKRequestDescriptor.requestDescriptorWithMapping(coffee_shop_mapping, objectClass:CoffeeShop, rootKeyPath:"coffee_shop")
-    restkit_object_manager.addRequestDescriptor(coffee_shop_descriptor)
+    coffee_shops_descriptor = RKResponseDescriptor.responseDescriptorWithMapping(coffee_shop_mapping, pathPattern:nil, keyPath:"coffee_shops", statusCodes: NSIndexSet.indexSetWithIndex(200))
+    restkit_object_manager.addResponseDescriptor(coffee_shops_descriptor)
+    coffee_shop_descriptor = RKResponseDescriptor.responseDescriptorWithMapping(coffee_shop_mapping, pathPattern:nil, keyPath:"coffee_shop", statusCodes: NSIndexSet.indexSetWithIndex(200))
+    restkit_object_manager.addResponseDescriptor(coffee_shop_descriptor)
   end
 
   def coffee_shop_mapping
