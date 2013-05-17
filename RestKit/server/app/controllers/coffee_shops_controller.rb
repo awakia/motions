@@ -5,11 +5,19 @@ class CoffeeShopsController < ApplicationController
   # GET /coffee_shops.json
   def index
     @coffee_shops = CoffeeShop.all
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @coffee_shops }
+    end
   end
 
   # GET /coffee_shops/1
   # GET /coffee_shops/1.json
   def show
+    respond_to do |format|
+      format.html { render }
+      format.json { render json: @coffee_shop }
+    end
   end
 
   # GET /coffee_shops/new
