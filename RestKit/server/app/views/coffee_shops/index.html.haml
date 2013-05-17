@@ -1,0 +1,23 @@
+%h1 Listing coffee_shops
+
+%table
+  %tr
+    %th Name
+    %th Latitude
+    %th Longitude
+    %th
+    %th
+    %th
+
+  - @coffee_shops.each do |coffee_shop|
+    %tr
+      %td= coffee_shop.name
+      %td= coffee_shop.latitude
+      %td= coffee_shop.longitude
+      %td= link_to 'Show', coffee_shop
+      %td= link_to 'Edit', edit_coffee_shop_path(coffee_shop)
+      %td= link_to 'Destroy', coffee_shop, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Coffee shop', new_coffee_shop_path

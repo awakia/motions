@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @coffee_shop.name
+%p
+  %b Latitude:
+  = @coffee_shop.latitude
+%p
+  %b Longitude:
+  = @coffee_shop.longitude
+
+= link_to 'Edit', edit_coffee_shop_path(@coffee_shop)
+\|
+= link_to 'Back', coffee_shops_path

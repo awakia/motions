@@ -1,0 +1,19 @@
+= form_for @coffee_shop do |f|
+  - if @coffee_shop.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@coffee_shop.errors.count, "error")} prohibited this coffee_shop from being saved:"
+      %ul
+        - @coffee_shop.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :latitude
+    = f.text_field :latitude
+  .field
+    = f.label :longitude
+    = f.text_field :longitude
+  .actions
+    = f.submit 'Save'
