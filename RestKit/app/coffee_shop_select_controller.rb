@@ -7,7 +7,7 @@ class CoffeeShopSelectController < UITableViewController
   end
 
   def tableView(tableView, numberOfRowsInSection:section)
-    p @json.count
+    @json.count
   end
 
   def tableView(tableView, cellForRowAtIndexPath:indexPath)
@@ -18,7 +18,12 @@ class CoffeeShopSelectController < UITableViewController
   end
 
   def request(request, result)
-    @json = result.dictionary.values.first
+    p result.firstObject
+    p result.count
+    p result.array
+    p result.dictionary
+    p result.set
+    @json = result.array
     tableView.reloadData
   end
 end
