@@ -42,7 +42,7 @@ class Server
                                   "latitude" => "latitude",
                                   "longitude" => "longitude",
                                   "name" => "name",
-                                  "shot_count" => "shot_count",
+                                  "shot_count" => "shotCount",
                                 })
                                 mapping
                              end

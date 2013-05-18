@@ -3,7 +3,7 @@ class CoffeeShopSelectController < UITableViewController
     view.dataSource = view.delegate = self
     @json = {}
     server = Server.instance
-    server.get("/coffee_shops.json", method(:request).to_proc)
+    server.get("coffee_shops.json", method(:request).to_proc)
   end
 
   def tableView(tableView, numberOfRowsInSection:section)
