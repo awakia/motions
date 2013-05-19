@@ -98,7 +98,7 @@ class MasterViewController < UITableViewController
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     if UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad
       object = self.fetchedResultsController.objectAtIndexPath(indexPath)
-      self.detailViewController.detailItem = object
+      self.detailViewController.setDetailItem(object)
     end
   end
 

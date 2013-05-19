@@ -38,6 +38,7 @@ class DetailViewController < UIViewController
 
   ## Split view
 
+  # Tells the delegate that the specified view controller is about to be hidden.
   def splitViewController(splitController,
       willHideViewController:viewController,
       withBarButtonItem:barButtonItem,
@@ -47,6 +48,7 @@ class DetailViewController < UIViewController
     @masterPopoverController = popoverController
   end
 
+  # Tells the delegate that the specified view controller is about to be shown again.
   def splitViewController(splitController,
       willShowViewController:viewController,
       invalidatingBarButtonItem:barButtonItem)
