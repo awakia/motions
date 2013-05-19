@@ -10,6 +10,7 @@ GEM
       thor (>= 0.15.4)
       xcodeproj (>= 0.4.1)
     multi_json (1.7.3)
+    sugarcube (0.20.21)
     thor (0.18.1)
     xcodeproj (0.5.5)
       activesupport (~> 3.2.13)
@@ -20,3 +21,4 @@ PLATFORMS
 
 DEPENDENCIES
   ib
+  sugarcube
