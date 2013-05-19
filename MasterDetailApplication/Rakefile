@@ -7,11 +7,6 @@ Bundler.require
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'MasterDetailApplication'
-  if ARGV.include? 'device_family=ipad'
-    app.info_plist['UIMainStoryboardFile'] = 'MainStoryboard_iPad'
-  else
-    app.info_plist['UIMainStoryboardFile'] = 'MainStoryboard_iPhone'
-  end
   app.frameworks << 'CoreData'
   app.device_family = [:iphone, :ipad]
 end

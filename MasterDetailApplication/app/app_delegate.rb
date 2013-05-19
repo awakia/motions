@@ -4,6 +4,9 @@ class AppDelegate
 
   def application(application, didFinishLaunchingWithOptions:launchOptions)
     if UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad
+      @storyboard = UIStoryboard.storyboardWithName('MainStoryboard_iPad', bundle:nil)
+      self.window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+      self.window.rootViewController = @storyboard.instantiateInitialViewController
       splitViewController = self.window.rootViewController
       navigationController = splitViewController.viewControllers.lastObject
       splitViewController.delegate = navigationController.topViewController
@@ -11,10 +14,15 @@ class AppDelegate
       controller = masterNavigationController.topViewController
       controller.managedObjectContext = self.managedObjectContext
     else
+      @storyboard = UIStoryboard.storyboardWithName('MainStoryboard_iPhone', bundle:nil)
+      self.window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+      self.window.rootViewController = @storyboard.instantiateInitialViewController
       navigationController = self.window.rootViewController
       controller = navigationController.topViewController
       controller.managedObjectContext = self.managedObjectContext
     end
+
+    self.window.makeKeyAndVisible
     true
   end
 
