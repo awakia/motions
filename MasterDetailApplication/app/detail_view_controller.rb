@@ -20,6 +20,7 @@ class DetailViewController < UIViewController
   def configureView
     # Update the user interface for the detail item.
     if self.detailItem
+      self.view  # I don't know why, but without this detailDescriptionLabel becme nil
       self.detailDescriptionLabel.text = self.detailItem.valueForKey("timeStamp").description
     end
   end
