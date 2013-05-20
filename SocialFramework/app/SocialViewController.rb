@@ -4,22 +4,22 @@ class SocialViewController < UIViewController
   def facebookAccount
     return @facebookAccount if @facebookAccount
 
-    accountStore = ACAccountStore.new
-    facebookAccountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
+    @accountStore = ACAccountStore.new
+    @facebookAccountType = @accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
     options = {
       ACFacebookAppIdKey => NSBundle.mainBundle.objectForInfoDictionaryKey('FACEBOOK_APP_ID'),  # app id
       ACFacebookPermissionsKey => ['email'],  # read privileges
       ACFacebookAudienceKey => ACFacebookAudienceOnlyMe  # scope of disclosure
     }
-    accountStore.requestAccessToAccountsWithType(
-      facebookAccountType,
-      options:options, completion:->(granted, error) do
+    @accountStore.requestAccessToAccountsWithType(
+      @facebookAccountType,
+      options:options, completion: lambda do |granted, error|
         if granted
-          accounts = accountStore.accountsWithAccountType:facebookAccountType
+          accounts = @accountStore.accountsWithAccountType(@facebookAccountType)
           @facebookAccount = accounts.lastObject
           @facebookCredential = @facebookAccount.credential
           @facebookToken = @facebookCredential.oauthToken
-          NSLog('fbAccessToken : %@', facebookToken)
+          NSLog('fbAccessToken : %@', @facebookToken)
         else
           # see http://stackoverflow.com/questions/12630066/acaccountstore-error-6-and-8
           NSLog('error code : %@', error)
