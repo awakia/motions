@@ -26,6 +26,11 @@ class SocialViewController < UIViewController
           # see http://stackoverflow.com/questions/12630066/acaccountstore-error-6-and-8
           NSLog('error code : %@', error)
           if error.code == 6
+            # http://stackoverflow.com/questions/14137902/how-do-display-a-uialertview-from-a-block-on-ios
+            # http://pochixpochi.blogspot.jp/2012/05/rubymotiongcd.html
+            Dispatch::Queue.main.async do
+              UIAlertView.alloc.initWithTitle('Error', message:"Please set up Facebook account!", delegate:nil, cancelButtonTitle:'OK', otherButtonTitles:nil).show
+            end
             NSLog("Please set up Facebook Account!")
             # # http://stackoverflow.com/questions/14145322/ios-6-social-framework-not-going-to-settings-or-no-alert
             # # SLComposeViewController.presentViewController show account setting alert by default,
@@ -37,6 +42,9 @@ class SocialViewController < UIViewController
             # Even if the error "CGImageCreate: invalid image size: 0 x 0" occurs in simulator,
             # it does not happen in actual device (http://sugumura.hatenablog.com/entry/2013/04/09/151131)
           else
+            Dispatch::Queue.main.async do
+              UIAlertView.alloc.initWithTitle('Error', message:error.localizedDescription, delegate:nil, cancelButtonTitle:'OK', otherButtonTitles:nil).show
+            end
             NSLog("Error accessing account: %s", error.localizedDescription)
           end
         end
@@ -56,6 +64,9 @@ class SocialViewController < UIViewController
           NSLog('Auth Success!')
         else
           NSLog('error code : %@', error)
+          Dispatch::Queue.main.async do
+            UIAlertView.alloc.initWithTitle('Error', message:error.localizedDescription, delegate:nil, cancelButtonTitle:'OK', otherButtonTitles:nil).show
+          end
         end
       end
     )
