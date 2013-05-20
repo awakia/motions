@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
 $:.unshift("/Library/RubyMotion/lib")
 require 'motion/project/template/ios'
+require 'yaml'
 require 'bundler'
 Bundler.require
+
+SETTINGS = YAML.load_file('config/settings.yml')
 
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'SocialFramework'
   app.frameworks += ['Social', 'Accounts']
+
+  # Facebook App Setup: https://developers.facebook.com/apps
+  app.info_plist['FACEBOOK_APP_ID'] = SETTINGS['facebook_app_id']
+  app.identifier = SETTINGS['identifier']
 end
