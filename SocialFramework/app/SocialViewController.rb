@@ -1,14 +1,16 @@
 class SocialViewController < UIViewController
   extend IB
 
-  def facebookAccount
-    return @facebookAccount if @facebookAccount
+  def getFacebookPermission
+    getFacebookPermissionWithPrivileges(['email'])
+  end
 
-    @accountStore = ACAccountStore.new
+  def getFacebookPermissionWithPrivileges(privileges)
+    @accountStore ||= ACAccountStore.new
     @facebookAccountType = @accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierFacebook)
     options = {
       ACFacebookAppIdKey => NSBundle.mainBundle.objectForInfoDictionaryKey('FACEBOOK_APP_ID'),  # app id
-      ACFacebookPermissionsKey => ['email'],  # read privileges
+      ACFacebookPermissionsKey => privileges,
       ACFacebookAudienceKey => ACFacebookAudienceOnlyMe  # scope of disclosure
     }
     @accountStore.requestAccessToAccountsWithType(
@@ -19,7 +21,7 @@ class SocialViewController < UIViewController
           @facebookAccount = accounts.lastObject
           @facebookCredential = @facebookAccount.credential
           @facebookToken = @facebookCredential.oauthToken
-          NSLog('fbAccessToken : %@', @facebookToken)
+          NSLog('Auth Success! fbAccessToken : %@', @facebookToken)
         else
           # see http://stackoverflow.com/questions/12630066/acaccountstore-error-6-and-8
           NSLog('error code : %@', error)
@@ -40,21 +42,40 @@ class SocialViewController < UIViewController
         end
       end
     )
-    @facebookAccount
+  end
+
+  def getTwitterPermission
+    @accountStore ||= ACAccountStore.new
+    @twitterAccountType = @accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+    @accountStore.requestAccessToAccountsWithType(
+      @twitterAccountType,
+      options:nil, completion: lambda do |granted, error|
+        if granted
+          accounts = @accountStore.accountsWithAccountType(@twitterAccountType)
+          @twitterAccount = accounts.lastObject
+          NSLog('Auth Success!')
+        else
+          NSLog('error code : %@', error)
+        end
+      end
+    )
   end
 
   def facebookRequest
+    return unless @facebookAccount
     url = 'https://graph.facebook.com/me'.nsurl
     params = { fields: 'id,name' }
     request = SLRequest.requestForServiceType(SLServiceTypeFacebook, requestMethod:SLRequestMethodGET, URL:url, parameters:params)
-    request.setAccount(self.facebookAccount)
+    request.setAccount(@facebookAccount)
     request.performRequestWithHandler(method(:slRequestHandler).to_proc)
   end
 
   def twitterRequest
+    return unless @twitterAccount
     url = 'https://api.twitter.com/1.1/users/show.json'.nsurl
     params = { screen_name: 'awakia' }
     request = SLRequest.requestForServiceType(SLServiceTypeTwitter, requestMethod:SLRequestMethodGET, URL:url, parameters:params)
+    request.setAccount(@twitterAccount)
     request.performRequestWithHandler(method(:slRequestHandler).to_proc)
   end
 

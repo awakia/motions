@@ -22,7 +22,20 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="facebookRequest" destination="YU8-lp-p3G" eventType="touchUpInside" id="P5x-pN-e7T"/>
+                                    <action selector="getFacebookPermission" destination="YU8-lp-p3G" eventType="touchUpInside" id="qwm-GH-jjw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eI9-py-FMS">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Facebook Profile">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookRequest" destination="YU8-lp-p3G" eventType="touchUpInside" id="NJr-14-Tfd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uE-xK-n2h">
@@ -35,15 +48,32 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="twitterRequest" destination="YU8-lp-p3G" eventType="touchUpInside" id="CGJ-TF-5PD"/>
+                                    <action selector="getTwitterPermission" destination="YU8-lp-p3G" eventType="touchUpInside" id="pKN-tJ-Nqz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46W-Rr-YfS">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Twitter Profile">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="twitterRequest" destination="YU8-lp-p3G" eventType="touchUpInside" id="b7f-3c-OIi"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2uE-xK-n2h" firstAttribute="top" secondItem="qgU-Vc-h3K" secondAttribute="top" constant="111" id="Qun-c8-8tD"/>
+                            <constraint firstItem="2uE-xK-n2h" firstAttribute="top" secondItem="qgU-Vc-h3K" secondAttribute="top" constant="198" id="7D5-Cr-qnp"/>
+                            <constraint firstItem="eI9-py-FMS" firstAttribute="leading" secondItem="qgU-Vc-h3K" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="AJv-tp-qaT"/>
+                            <constraint firstItem="eI9-py-FMS" firstAttribute="top" secondItem="qgU-Vc-h3K" secondAttribute="top" constant="108" id="NkG-c6-aTZ"/>
+                            <constraint firstItem="46W-Rr-YfS" firstAttribute="top" secondItem="qgU-Vc-h3K" secondAttribute="top" constant="273" id="PPG-fv-a7S"/>
                             <constraint firstItem="2uE-xK-n2h" firstAttribute="leading" secondItem="qgU-Vc-h3K" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="YDc-cL-d0u"/>
                             <constraint firstItem="Sdv-YJ-uYC" firstAttribute="top" secondItem="qgU-Vc-h3K" secondAttribute="top" constant="37" id="egZ-9M-ayc"/>
+                            <constraint firstItem="46W-Rr-YfS" firstAttribute="leading" secondItem="qgU-Vc-h3K" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="iiy-Kl-NxW"/>
                             <constraint firstItem="Sdv-YJ-uYC" firstAttribute="leading" secondItem="qgU-Vc-h3K" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qce-9h-wnD"/>
                         </constraints>
                     </view>
@@ -56,12 +86,60 @@
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+            <relationships>
+                <relationship kind="action" name="to_s"/>
+            </relationships>
         </class>
         <class className="SocialViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SocialViewController.h"/>
             <relationships>
                 <relationship kind="action" name="facebookRequest"/>
+                <relationship kind="action" name="getFacebookPermission"/>
+                <relationship kind="action" name="getTwitterPermission"/>
                 <relationship kind="action" name="twitterRequest"/>
+            </relationships>
+        </class>
+        <class className="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIButton.h"/>
+            <relationships>
+                <relationship kind="action" name="contact"/>
+                <relationship kind="action" name="contact_add"/>
+                <relationship kind="action" name="custom"/>
+                <relationship kind="action" name="detail"/>
+                <relationship kind="action" name="detail_disclosure"/>
+                <relationship kind="action" name="info"/>
+                <relationship kind="action" name="info_dark"/>
+                <relationship kind="action" name="info_light"/>
+                <relationship kind="action" name="rounded"/>
+                <relationship kind="action" name="rounded_rect"/>
+            </relationships>
+        </class>
+        <class className="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIControl.h"/>
+            <relationships>
+                <relationship kind="action" name="call"/>
+                <relationship kind="action" name="sugarcube_callbacks"/>
+            </relationships>
+        </class>
+        <class className="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIView.h"/>
+            <relationships>
+                <relationship kind="action" name="controller"/>
+                <relationship kind="action" name="first_responder"/>
+                <relationship kind="action" name="hide"/>
+                <relationship kind="action" name="shake:"/>
+                <relationship kind="action" name="show"/>
+                <relationship kind="action" name="to_s:"/>
+                <relationship kind="action" name="uiimage:"/>
+                <relationship kind="action" name="unshift:"/>
+            </relationships>
+        </class>
+        <class className="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pop"/>
+                <relationship kind="action" name="push:"/>
+                <relationship kind="action" name="to_s"/>
             </relationships>
         </class>
     </classes>
