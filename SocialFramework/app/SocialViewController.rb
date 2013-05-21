@@ -78,7 +78,12 @@ class SocialViewController < UIViewController
     params = { fields: 'id,name' }
     request = SLRequest.requestForServiceType(SLServiceTypeFacebook, requestMethod:SLRequestMethodGET, URL:url, parameters:params)
     request.setAccount(@facebookAccount)
-    request.performRequestWithHandler(method(:slRequestHandler).to_proc)
+    #request.performRequestWithHandler(method(:slRequestHandler).to_proc)
+    BW::HTTP.get(request.preparedURLRequest.URL.to_s) do |response|
+      p response
+      json = BW::JSON.parse(response.body)
+      p json
+    end
   end
 
   def twitterRequest
@@ -92,6 +97,8 @@ class SocialViewController < UIViewController
 
   def slRequestHandler(responseData, urlResponse, error)
     p responseData
+    json = BW::JSON.parse(responseData)
+    p json
     p urlResponse
     p error
   end
